@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Utils\NotificationArgs.cs" />
     <Compile Include="Assets\Scripts\Utils\NotificationCenter.cs" />
     <Compile Include="Assets\Scripts\Utils\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\View\CircleView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>
