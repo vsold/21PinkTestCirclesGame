@@ -55,11 +55,12 @@ namespace CirclesGame
             var newCircle = circlesPool.GetObject();
             newCircle.SetActive(true);
             var circleView = newCircle.GetComponent<CircleView>();
+            var circleMove = newCircle.GetComponent<CircleMovementComponent>();
             float radius = Model.GetRadius();
             int score = Model.GetScore(radius);
+            float speed = Model.GetSpeed(radius);
             circleView.Init(radius, score);
-            
-
+            circleMove.StartMove(speed);
         }
     }
 }

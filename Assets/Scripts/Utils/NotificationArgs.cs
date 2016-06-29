@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-
-namespace CirclesGame
+﻿namespace CirclesGame
 {
     public abstract class NotificationArgs
     {

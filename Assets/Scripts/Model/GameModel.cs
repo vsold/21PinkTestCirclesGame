@@ -15,9 +15,9 @@ namespace CirclesGame
         public GameModel()
         {
             levelsData = new LevelDifficulty[3];
-            levelsData[0] = new LevelDifficulty(new Vector2(150f, 400f), 50f, 5, new Vector2(1f, 2f), 100);
-            levelsData[1] = new LevelDifficulty(new Vector2(140f, 350f), 100f, 10, new Vector2(0.5f, 1f), 200);
-            levelsData[2] = new LevelDifficulty(new Vector2(100f, 300f), 150f, 20, new Vector2(0.2f, 0.5f), 500);
+            levelsData[0] = new LevelDifficulty(new Vector2(150f, 400f), 150f, 5, new Vector2(1f, 2f), 100);
+            levelsData[1] = new LevelDifficulty(new Vector2(140f, 350f), 200f, 10, new Vector2(0.5f, 1f), 200);
+            levelsData[2] = new LevelDifficulty(new Vector2(100f, 300f), 250f, 20, new Vector2(0.2f, 0.5f), 500);
 
             InitLevel(0);
         }

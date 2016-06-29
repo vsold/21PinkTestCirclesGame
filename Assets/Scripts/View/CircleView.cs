@@ -8,7 +8,6 @@ public class CircleView : MonoBehaviour
         {
             radius = value;
             CashedTransform.localScale = new Vector3(radius, radius, radius);
-            Debug.Log("radius = " + radius);
         }
         get { return radius; }
     }
@@ -30,7 +29,7 @@ public class CircleView : MonoBehaviour
 
 
     [SerializeField] 
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
     private Color color;
     private float radius;
     private Transform cashedTransform;
