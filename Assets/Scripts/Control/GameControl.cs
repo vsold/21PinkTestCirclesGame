@@ -2,10 +2,19 @@
 using System.Collections;
 
 namespace CirclesGame
-{
+{   
+    [RequireComponent(typeof (CirclesSpawnerComponent))]
     public class GameControl : MonoBehaviour
     {
-        readonly GameModel model = new GameModel();
+        [SerializeField]
+        private CirclesSpawnerComponent circlesSpawner;
+        private GameModel model;
+
+        private void Start()
+        {
+            model = new GameModel();
+            circlesSpawner.Model = model;
+        }
 
         private void StartGame()
         {

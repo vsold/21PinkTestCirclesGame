@@ -13,5 +13,15 @@ namespace CirclesGame
         {
         }
     }
+
+    public class NotificationArgsNewLevel : NotificationArgs
+    {
+        public LevelDifficulty level;
+
+        public NotificationArgsNewLevel(LevelDifficulty level)
+        {
+            this.level = level;
+        }
+    }
 }
 

@@ -8,6 +8,7 @@ public class CircleView : MonoBehaviour
         {
             radius = value;
             CashedTransform.localScale = new Vector3(radius, radius, radius);
+            Debug.Log("radius = " + radius);
         }
         get { return radius; }
     }
@@ -57,10 +58,5 @@ public class CircleView : MonoBehaviour
         float z = CashedTransform.localPosition.z;
 
         CashedTransform.localPosition = new Vector3(x, y, z);
-    }
-
-    void Start ()
-    {
-        Init(300f, 1);
     }
 }

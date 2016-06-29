@@ -33,9 +33,10 @@ public class ObjectPool : MonoBehaviour
         count += 1;
         if (parent != null)
         {
-            go.transform.parent = parent;
+            go.transform.SetParent(parent);
+            go.transform.localScale = parent.transform.localScale;
         }
-        go.name = prefab.name + " " + count;
+        go.name = prefab.name + "_" + count;
         go.SetActive(false);
         return go;
     }
@@ -50,7 +51,7 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            if (fixedSize)
+            if (!fixedSize)
             {
                 go = InstantiateNewObject();
             }

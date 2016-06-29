@@ -15,9 +15,9 @@ namespace CirclesGame
         public GameModel()
         {
             levelsData = new LevelDifficulty[3];
-            levelsData[0] = new LevelDifficulty(new Vector2(50f, 100f), 50f, 5, new Vector2(3f, 5f), 100);
-            levelsData[1] = new LevelDifficulty(new Vector2(40f, 80f), 100f, 10, new Vector2(2f, 4f), 200);
-            levelsData[2] = new LevelDifficulty(new Vector2(30f, 60f), 150f, 20, new Vector2(1f, 2f), 500);
+            levelsData[0] = new LevelDifficulty(new Vector2(150f, 400f), 50f, 5, new Vector2(1f, 2f), 100);
+            levelsData[1] = new LevelDifficulty(new Vector2(140f, 350f), 100f, 10, new Vector2(0.5f, 1f), 200);
+            levelsData[2] = new LevelDifficulty(new Vector2(100f, 300f), 150f, 20, new Vector2(0.2f, 0.5f), 500);
 
             InitLevel(0);
         }
@@ -44,7 +44,13 @@ namespace CirclesGame
             currentLevelNum = num;
             levelProgressScore = 0;
             CurrentLevel = levelsData[currentLevelNum];
+            NotificationCenter.Instance.PostNotification(null, NotificationName.ON_NEW_LEVEl, new NotificationArgsNewLevel(CurrentLevel));
             Debug.Log("Level up " + currentLevelNum);
+        }
+
+        public float GetRadius()
+        {
+            return Random.Range(CurrentLevel.RadiusMinMax.x, CurrentLevel.RadiusMinMax.y);
         }
 
         public float GetSpeed(float radius)
