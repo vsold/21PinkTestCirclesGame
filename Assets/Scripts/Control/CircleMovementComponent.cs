@@ -35,8 +35,6 @@ namespace CirclesGame
             Vector2 screenToCamsize = new Vector2(Screen.width, Screen.height);
             screenToCamsize = Camera.main.ScreenToWorldPoint(screenToCamsize);
 
-            Debug.Log(speed);
-
             float x = Random.Range(-screenToCamsize.x + bounds.extents.x, screenToCamsize.x - bounds.extents.x);
             float y = screenToCamsize.y - bounds.extents.y;
             float z = cashedTransform.localPosition.z;
