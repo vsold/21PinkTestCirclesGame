@@ -3,30 +3,64 @@ using System.Collections;
 
 public class CircleView : MonoBehaviour
 {
-    public float Radius { set; get; }
-    public Color Color {set; get;}
-    public int Score {set; get;}
+    public float Radius {
+        set
+        {
+            radius = value;
+            CashedTransform.localScale = new Vector3(radius, radius, radius);
+        }
+        get { return radius; }
+    }
 
-    [SerializeField]
+    public int Score { set; get; }
+
+    public Color Color
+    {
+        set
+        {
+            color = value;
+            if (renderer != null)
+            {
+                renderer.color = Color;
+            }
+        } 
+        get { return color; }
+    }
+
+
+    [SerializeField] 
     private SpriteRenderer renderer;
+    private Color color;
+    private float radius;
+    private Transform cashedTransform;
+    private Transform CashedTransform
+    {
+        get
+        {
+            return cashedTransform ?? (cashedTransform = gameObject.transform);
+        }
+    }
 
     public void Init(float radius, int score)
     {
         Radius = radius;
         Score = score;
+        Color = new Color(Random.value, Random.value, Random.value);
+
+        SetRandomPosition();
     }
 
-    private void SetRandomColorValue()
+    private void SetRandomPosition()
     {
-        Color = new Color(Random.value, Random.value, Random.value);
-        if (renderer != null)
-        {
-            renderer.color = Color;
-        }
+        float x = Random.Range(-300f, 300f);
+        float y = Random.Range(-300f, 300f);
+        float z = CashedTransform.localPosition.z;
+
+        CashedTransform.localPosition = new Vector3(x, y, z);
     }
 
     void Start ()
     {
-        SetRandomColorValue();
+        Init(300f, 1);
     }
 }
