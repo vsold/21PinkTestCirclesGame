@@ -9,7 +9,6 @@ namespace CirclesGame
 
         private void StartGame()
         {
-            model.Score = 0;
 
         }
     }
