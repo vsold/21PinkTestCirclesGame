@@ -66,5 +66,6 @@ public class ObjectPool : MonoBehaviour
         {
             return;
         }
+        storedObjects.Add(go);
     }
 }
