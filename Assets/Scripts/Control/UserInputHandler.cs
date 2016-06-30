@@ -6,14 +6,8 @@ namespace CirclesGame
     {
         public bool Block { get; set; }
         private Camera cam;
-        private GameControl controller;
 
-        private const string clickTag = "Circle";
-
-        public void Init(GameControl _controller)
-        {
-            controller = _controller;
-        }
+        private const string CLICK_TAG = "Circle";
 
         private void Awake()
         {
@@ -37,7 +31,7 @@ namespace CirclesGame
                 return;
             }
 
-            var point = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 point = cam.ScreenToWorldPoint(Input.mousePosition);
             Collider2D collider = Physics2D.OverlapPoint(point);
 
             if (collider == null)
@@ -47,10 +41,10 @@ namespace CirclesGame
 
             string tag = collider.gameObject.tag;
 
-            if (string.IsNullOrEmpty(tag) || tag != "clickTag")
+            if (string.IsNullOrEmpty(tag) || tag != CLICK_TAG)
                 return;
-            NotificationCenter.Instance.PostNotification(this, NotificationName.ON_CIRCLE_CLICK);
-            //controller.OnUserInput(point, collider);
+
+            NotificationCenter.Instance.PostNotification(this, NotificationName.ON_CIRCLE_CLICK, new NotificationArgsUserInput(collider));
         }
     }
 }
