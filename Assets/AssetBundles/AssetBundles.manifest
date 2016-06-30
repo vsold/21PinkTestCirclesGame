@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3092766424
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: circlebundle
+      Dependencies: {}

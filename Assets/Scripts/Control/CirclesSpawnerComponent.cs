@@ -68,6 +68,11 @@ namespace CirclesGame
         private void SpawnCircle()
         {
             var newCircle = circlesPool.GetObject();
+            if (newCircle == null)
+            {
+                Debug.Log("Pool is not ready yet. Loading...");
+                return;
+            }
             newCircle.SetActive(true);
             var circleView = newCircle.GetComponent<CircleView>();
             var circleMove = newCircle.GetComponent<CircleMovementComponent>();

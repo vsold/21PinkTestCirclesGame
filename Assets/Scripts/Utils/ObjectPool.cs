@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class ObjectPool : MonoBehaviour
@@ -16,7 +18,7 @@ public class ObjectPool : MonoBehaviour
         get { return size; }
     }
 
-    void Awake()
+    private void InitStoredObjects()
     {
         storedObjects = new List<GameObject>();
 
@@ -24,6 +26,30 @@ public class ObjectPool : MonoBehaviour
         {
             var go = InstantiateNewObject();
             storedObjects.Add(go);
+        }
+    }
+
+    private IEnumerator Start()
+    {
+        yield return StartCoroutine(LoadPrefabFromAssetBundle());
+
+        InitStoredObjects();
+    }
+
+    public IEnumerator LoadPrefabFromAssetBundle()
+    {
+        var bundleUrl = string.Format("file:///{0}/{1}", Application.dataPath, "AssetBundles/circlebundle");
+
+        using (WWW www = new WWW(bundleUrl))
+        {
+            yield return www;
+
+            if (www.error != null)
+                throw new Exception("WWW download had an error:" + www.error);
+
+            AssetBundle bundle = www.assetBundle;
+            prefab = bundle.LoadAsset<GameObject>("Circle");
+            bundle.Unload(false);
         }
     }
 
