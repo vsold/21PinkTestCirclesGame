@@ -42,7 +42,7 @@ namespace CirclesGame
             if (currentLevelNum >= model.LevelsData.Length - 1)
                 return;
 
-            InitLevel(currentLevelNum++);
+            InitLevel(++currentLevelNum);
         }
 
         public void InitLevel(int num)
@@ -51,7 +51,7 @@ namespace CirclesGame
             levelProgressScore = 0;
             CurrentLevel = model.LevelsData[currentLevelNum];
             model.CurrentLevel = CurrentLevel;
-            NotificationCenter.Instance.PostNotification(null, NotificationName.ON_NEW_LEVEl, new NotificationArgsNewLevel(CurrentLevel));
+            NotificationCenter.Instance.PostNotification(this, NotificationName.ON_NEW_LEVEl, new NotificationArgsNewLevel(CurrentLevel));
             Debug.Log("Level up " + currentLevelNum);
         }
 

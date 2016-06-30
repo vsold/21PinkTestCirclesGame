@@ -42,5 +42,15 @@ namespace CirclesGame
             this.score = score;
         }
     }
+
+    public class NotificationArgsOnCircleHitsGround : NotificationArgs
+    {
+        public GameObject gameObj;
+
+        public NotificationArgsOnCircleHitsGround(GameObject gameObj)
+        {
+            this.gameObj = gameObj;
+        }
+    }
 }
 

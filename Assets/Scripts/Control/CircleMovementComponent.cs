@@ -49,6 +49,8 @@ namespace CirclesGame
 
         public void StopMove()
         {
+            moveCoroutine = null;
+            IsMoving = false;
             if (moveCoroutine != null)
                 StopCoroutine(moveCoroutine);
         }
@@ -64,8 +66,12 @@ namespace CirclesGame
             }
 
             cashedTransform.position = target;
-            moveCoroutine = null;
-            IsMoving = false;
+            StopMove();
+            NotificationCenter.Instance.PostNotification(this, NotificationName.ON_CIRCLE_HIT_GROUND);
+        }
+
+        private void OnDisable()
+        {
             StopMove();
         }
     }

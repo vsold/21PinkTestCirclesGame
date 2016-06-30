@@ -16,6 +16,12 @@ namespace CirclesGame
         {
             NotificationCenter.Instance.AddObserver(this, OnNewLevelSet, NotificationName.ON_NEW_LEVEl);
             NotificationCenter.Instance.AddObserver(this, OnCircleClick, NotificationName.ON_CIRCLE_CLICK);
+            NotificationCenter.Instance.AddObserver(this, OnCircleHitGround, NotificationName.ON_CIRCLE_HIT_GROUND);
+        }
+
+        private void OnCircleHitGround(Notification notification)
+        {
+            circlesPool.ReturnObject(notification.sender.gameObject);
         }
 
         private void OnNewLevelSet(Notification notification)
