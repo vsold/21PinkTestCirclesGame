@@ -33,11 +33,11 @@ namespace CirclesGame
         }
     }
 
-    public class NotificationArgsScoresInc : NotificationArgs
+    public class NotificationArgsScores : NotificationArgs
     {
         public int score;
 
-        public NotificationArgsScoresInc(int score)
+        public NotificationArgsScores(int score)
         {
             this.score = score;
         }

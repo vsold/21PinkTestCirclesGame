@@ -30,8 +30,8 @@ namespace CirclesGame
         {
             TotalScore += increment;
             levelProgressScore += increment;
+            NotificationCenter.Instance.PostNotification(this, NotificationName.NEW_TOTAL_SCORE, new NotificationArgsScores(TotalScore));
             TryToLevelUp();
-            Debug.Log("increment = " + increment + " total score = " + TotalScore);
         }
 
         public void TryToLevelUp()
@@ -57,7 +57,7 @@ namespace CirclesGame
 
         private void OnScoreInc(Notification notification)
         {
-            int incScore = notification.GetArgs<NotificationArgsScoresInc>().score;
+            int incScore = notification.GetArgs<NotificationArgsScores>().score;
             IncScore(incScore);
         }
     }

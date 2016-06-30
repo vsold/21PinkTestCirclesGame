@@ -35,7 +35,7 @@ namespace CirclesGame
             var args = notification.GetArgs<NotificationArgsUserInput>();
             var circleCollider = args.collider;
             int score = circleCollider.GetComponent<CircleView>().Score;
-            NotificationCenter.Instance.PostNotification(this, NotificationName.ON_SCORE_INC, new NotificationArgsScoresInc(score));
+            NotificationCenter.Instance.PostNotification(this, NotificationName.ON_SCORE_INC, new NotificationArgsScores(score));
             circlesPool.ReturnObject(circleCollider.gameObject);
         }
 

@@ -71,6 +71,8 @@
     <Compile Include="Assets\Scripts\Control\CircleMovementComponent.cs" />
     <Compile Include="Assets\Scripts\Control\CirclesSpawnerComponent.cs" />
     <Compile Include="Assets\Scripts\Control\GameControl.cs" />
+    <Compile Include="Assets\Scripts\Control\GameGUIController.cs" />
+    <Compile Include="Assets\Scripts\Control\LevelGUITimer.cs" />
     <Compile Include="Assets\Scripts\Control\UserInputHandler.cs" />
     <Compile Include="Assets\Scripts\Model\GameModel.cs" />
     <Compile Include="Assets\Scripts\Utils\Notification.cs" />

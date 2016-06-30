@@ -66,6 +66,7 @@ namespace CirclesGame
         ON_CIRCLE_CLICK,
         ON_NEW_LEVEl,
         ON_SCORE_INC,
+        NEW_TOTAL_SCORE,
         ON_CIRCLE_HIT_GROUND,
     }
 }

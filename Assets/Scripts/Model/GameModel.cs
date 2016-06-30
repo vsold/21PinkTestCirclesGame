@@ -12,8 +12,8 @@ namespace CirclesGame
         {
             LevelsData = new LevelDifficulty[3];
             LevelsData[0] = new LevelDifficulty(new Vector2(150f, 400f), 150f, 5, new Vector2(0.3f, 0.5f), 100);
-            LevelsData[1] = new LevelDifficulty(new Vector2(140f, 350f), 200f, 10, new Vector2(0.5f, 1f), 200);
-            LevelsData[2] = new LevelDifficulty(new Vector2(100f, 300f), 250f, 20, new Vector2(0.2f, 0.5f), 500);
+            LevelsData[1] = new LevelDifficulty(new Vector2(140f, 350f), 180f, 10, new Vector2(0.2f, 0.4f), 200);
+            LevelsData[2] = new LevelDifficulty(new Vector2(100f, 300f), 200f, 20, new Vector2(0.1f, 0.4f), 500);
         }
         // Game rules
         public float GetRadius()
