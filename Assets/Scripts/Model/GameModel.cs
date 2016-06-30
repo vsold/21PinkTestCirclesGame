@@ -11,9 +11,9 @@ namespace CirclesGame
         void Awake()
         {
             LevelsData = new LevelDifficulty[3];
-            LevelsData[0] = new LevelDifficulty(new Vector2(150f, 400f), 150f, 5, new Vector2(0.3f, 0.5f), 100);
-            LevelsData[1] = new LevelDifficulty(new Vector2(140f, 350f), 180f, 10, new Vector2(0.2f, 0.4f), 200);
-            LevelsData[2] = new LevelDifficulty(new Vector2(100f, 300f), 200f, 20, new Vector2(0.1f, 0.4f), 500);
+            LevelsData[0] = new LevelDifficulty(new Vector2(350f, 600f), 160f, 5, new Vector2(0.4f, 0.8f), 200);
+            LevelsData[1] = new LevelDifficulty(new Vector2(240f, 350f), 180f, 10, new Vector2(0.2f, 0.4f), 400);
+            LevelsData[2] = new LevelDifficulty(new Vector2(150f, 300f), 200f, 20, new Vector2(0.1f, 0.4f), 600);
         }
         // Game rules
         public float GetRadius()
