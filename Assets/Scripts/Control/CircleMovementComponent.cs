@@ -22,7 +22,7 @@ namespace CirclesGame
         {
             
         }
-
+        //TODO: refactor
         public void StartMove(float speed)
         {
             circleCollider2D = gameObject.GetComponent<CircleCollider2D>();

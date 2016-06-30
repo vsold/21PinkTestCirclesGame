@@ -15,13 +15,22 @@ namespace CirclesGame
         void Awake()
         {
             NotificationCenter.Instance.AddObserver(this, OnNewLevelSet, NotificationName.ON_NEW_LEVEl);
+            NotificationCenter.Instance.AddObserver(this, OnCircleClick, NotificationName.ON_CIRCLE_CLICK);
         }
 
         private void OnNewLevelSet(Notification notification)
         {
             var args = notification.GetArgs<NotificationArgsNewLevel>();
             AssignNewLevelDifficulty(args.level);
-            
+        }
+
+        private void OnCircleClick(Notification notification)
+        {
+            var args = notification.GetArgs<NotificationArgsUserInput>();
+            var circleCollider = args.collider;
+            int score = circleCollider.GetComponent<CircleView>().Score;
+            NotificationCenter.Instance.PostNotification(this, NotificationName.ON_SCORE_INC, new NotificationArgsScoresInc(score));
+            circlesPool.ReturnObject(circleCollider.gameObject);
         }
 
         private void AssignNewLevelDifficulty(LevelDifficulty level)
