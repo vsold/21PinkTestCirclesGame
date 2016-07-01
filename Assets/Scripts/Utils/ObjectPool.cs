@@ -5,10 +5,12 @@ using System.Collections.Generic;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
     [SerializeField] private Transform parent;
     [SerializeField] private int size = 0;
     [SerializeField] private bool fixedSize = true;
+    [SerializeField] private string bundlePath;
+    [SerializeField] private string bundleName;
+    private GameObject prefab;
     private int count = 0;
 
     private List<GameObject> storedObjects;
@@ -38,7 +40,7 @@ public class ObjectPool : MonoBehaviour
 
     public IEnumerator LoadPrefabFromAssetBundle()
     {
-        var bundleUrl = string.Format("file:///{0}/{1}", Application.dataPath, "AssetBundles/circlebundle");
+        var bundleUrl = string.Format("file:///{0}/{1}", Application.dataPath, bundlePath);
 
         using (WWW www = new WWW(bundleUrl))
         {
@@ -48,7 +50,7 @@ public class ObjectPool : MonoBehaviour
                 throw new Exception("WWW download had an error:" + www.error);
 
             AssetBundle bundle = www.assetBundle;
-            prefab = bundle.LoadAsset<GameObject>("Circle");
+            prefab = bundle.LoadAsset<GameObject>(bundleName);
             bundle.Unload(false);
         }
     }

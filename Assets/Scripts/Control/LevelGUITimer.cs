@@ -7,14 +7,13 @@ namespace CirclesGame
 {
     public class LevelGUITimer : MonoBehaviour
     {
-        [SerializeField] 
-        private Text timerText;
-
         public string TimeString
         {
             get { return timerText.text; }
         }
 
+        [SerializeField]
+        private Text timerText;
         private const float updateInterval = 1;
 
         public void Start()
@@ -31,7 +30,6 @@ namespace CirclesGame
         private IEnumerator TimerCoroutine()
         {
             float startTime = Time.timeSinceLevelLoad;
-
             while (true)
             {
                 float timeDiff = Time.timeSinceLevelLoad - startTime;

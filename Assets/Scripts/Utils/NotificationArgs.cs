@@ -23,16 +23,6 @@ namespace CirclesGame
         }
     }
 
-    public class NotificationArgsUserInput : NotificationArgs
-    {
-        public Collider2D collider;
-
-        public NotificationArgsUserInput(Collider2D collider)
-        {
-            this.collider = collider;
-        }
-    }
-
     public class NotificationArgsScores : NotificationArgs
     {
         public int score;

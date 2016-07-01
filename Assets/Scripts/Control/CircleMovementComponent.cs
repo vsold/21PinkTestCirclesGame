@@ -7,43 +7,50 @@ namespace CirclesGame
     {
         public bool IsMoving { private set; get; }
         public float Speed { set; get; }
+
+        [SerializeField]
+        private SphereCollider circleCollider;
         private Vector3 target;
         private Transform cashedTransform;
         private Bounds bounds;
         private Coroutine moveCoroutine;
-        private CircleCollider2D circleCollider2D;
+        private Vector2 screenToCamsize;
 
         private void Awake()
         {
             cashedTransform = transform;
         }
 
-        private void Start()
+        private void UpdateScreenSize()
         {
-            
+            screenToCamsize = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         }
-        //TODO: refactor
-        public void StartMove(float speed)
+
+        private Vector3 GetStartPoint()
         {
-            circleCollider2D = gameObject.GetComponent<CircleCollider2D>();
-            if (circleCollider2D != null)
-            {
-                bounds = circleCollider2D.bounds;
-            }
-
-            Speed = speed;
-            Vector2 screenToCamsize = new Vector2(Screen.width, Screen.height);
-            screenToCamsize = Camera.main.ScreenToWorldPoint(screenToCamsize);
-
             float x = Random.Range(-screenToCamsize.x + bounds.extents.x, screenToCamsize.x - bounds.extents.x);
             float y = screenToCamsize.y - bounds.extents.y;
             float z = cashedTransform.localPosition.z;
-            cashedTransform.localPosition = new Vector3(x, y, z);
+            return new Vector3(x, y, z);
+        }
 
-            target = cashedTransform.position + new Vector3(0f, -screenToCamsize.y * 2 + bounds.size.y, 0f);
+        private Vector3 GetFinalPoint()
+        {
+            return cashedTransform.position + new Vector3(0f, -screenToCamsize.y*2 + bounds.size.y, 0f);
+        }
+
+        public void StartMove(float speed)
+        {
+            Speed = speed;
+            bounds = circleCollider.bounds;
+            UpdateScreenSize();
+
+            cashedTransform.localPosition = GetStartPoint();
+            target = GetFinalPoint();
 
             if (moveCoroutine == null)
                 moveCoroutine = StartCoroutine(Move());
+
             IsMoving = true;
         }
 
@@ -75,6 +82,5 @@ namespace CirclesGame
             StopMove();
         }
     }
-
 }
 

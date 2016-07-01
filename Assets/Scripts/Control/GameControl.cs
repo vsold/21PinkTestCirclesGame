@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace CirclesGame
 {   
@@ -13,16 +12,13 @@ namespace CirclesGame
         private GameModel model;
         [SerializeField]
         private CirclesSpawnerComponent circlesSpawner;
-
         private int levelProgressScore;
         private int currentLevelNum;
 
         private void Start()
         {
             circlesSpawner.Model = model;
-
             InitLevel(0);
-
             NotificationCenter.Instance.AddObserver(this, OnScoreInc, NotificationName.ON_SCORE_INC);
         }
 

@@ -1,61 +1,41 @@
 ﻿using UnityEngine;
-using System.Collections;
+using CirclesGame;
 
 public class CircleView : MonoBehaviour
 {
-    public float Radius {
-        set
-        {
-            radius = value;
-            CashedTransform.localScale = new Vector3(radius, radius, radius);
-        }
-        get { return radius; }
-    }
+    public CircleSizes Size { get {return size;}}
+    public CircleColors Color { get {return color;}}
+    public int Score { get {return score;}}
+    public MeshRenderer Renderer { get {return renderer;}}
 
-    public int Score { set; get; }
-
-    public Color Color
-    {
-        set
-        {
-            color = value;
-            if (renderer != null)
-            {
-                renderer.color = Color;
-            }
-        } 
-        get { return color; }
-    }
-
-
-    [SerializeField] 
-    private new SpriteRenderer renderer;
-    private Color color;
-    private float radius;
+    [SerializeField] private new MeshRenderer renderer;
+    private CircleSizes size;
+    private CircleColors color;
+    private int score;
     private Transform cashedTransform;
-    private Transform CashedTransform
+    private const int BASE_SIZE = 16;
+
+    void Awake()
     {
-        get
-        {
-            return cashedTransform ?? (cashedTransform = gameObject.transform);
-        }
+        cashedTransform = gameObject.transform;
     }
 
-    public void Init(float radius, int score)
+    public void Init(CircleSizes size, CircleColors color, int score)
     {
-        Radius = radius;
-        Score = score;
-        Color = new Color(Random.value, Random.value, Random.value);
-
-        SetRandomPosition();
+        this.size = size;
+        this.color = color;
+        this.score = score;
+        SetActualSize();
     }
 
-    private void SetRandomPosition()
+    private void SetActualSize()
     {
-        float x = Random.Range(-300f, 300f);
-        float y = Random.Range(-300f, 300f);
-        float z = CashedTransform.localPosition.z;
+        int actSize = (int)size * BASE_SIZE;
+        cashedTransform.localScale = new Vector3(actSize, actSize, 0);
+    }
 
-        CashedTransform.localPosition = new Vector3(x, y, z);
+    private void OnMouseDown()
+    {
+        NotificationCenter.Instance.PostNotification(this, NotificationName.ON_CIRCLE_CLICK);
     }
 }
